@@ -18,12 +18,12 @@ To get a local copy up and running follow these simple example steps.
 
 ### Setup
 
-- Clone the repository using `git clone git@github.com:amejid/blog-app.git`
-- Navigate to the folder using `cd blog-app`
+- Clone the repository using `git clone git@github.com:XsidX/blog_app.git`
+- Navigate to the folder using `cd blog_app`
 - Use the following commands to
     - install necessary gems `bundle install`
     - install necessary javascript packages `npm install`
-    - run the development server `rails server`
+    - run the development server `rails s`
 
 ## Author
 
