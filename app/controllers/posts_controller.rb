@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   def show; end
 
   private
+
   def set_post
     @post = Post.find(params[:id])
   end
@@ -15,5 +16,4 @@ class PostsController < ApplicationController
   def set_user
     @user = User.find(params[:user_id])
   end
-
 end
