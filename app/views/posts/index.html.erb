@@ -1,1 +1,21 @@
-<h1>Here is a list of posts for a given user: </h1>
+<%= render 'layouts/user_card', user: @user %>
+
+<% @posts.each do |post| %>
+  <%= render 'layouts/post_card', post: post %>
+  <%= render 'layouts/comments_card', post: post %>
+<% end %>
+<div class="flex flex-col items-center">
+  <span class="text-sm text-gray-700 dark:text-gray-400">
+      Showing <span class="font-semibold text-gray-900 dark:text-white">1</span> to <span class="font-semibold text-gray-900 dark:text-white">2 posts</span> of <span class="font-semibold text-gray-900 dark:text-white"><%= @user.posts_count %></span> Entries
+  </span>
+  <div class="inline-flex mt-2 xs:mt-0">
+    <button class="py-2 px-4 text-sm font-medium text-white bg-stone-600 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+      Prev
+    </button>
+    <button class="py-2 px-4 text-sm font-medium text-white bg-stone-600 rounded-r border-0 border-l border-gray-700 hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+      Next
+    </button>
+  </div>
+</div>
+
+

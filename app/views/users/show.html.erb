@@ -1,1 +1,17 @@
-<h1>Showing details for a user</h1>
+<section>
+  <%= render 'layouts/user_card', user: @user %>
+  <div class="bg-white drop-shadow-md p-4 mb-6">
+    <h3 class="mb-2">Bio</h3>
+    <h4 class="text-sm">
+      <%= @user.bio %>
+    </h4>
+  </div>
+  <div>
+    <% @user.posts.each do |post| %>
+      <%= render 'layouts/post_card', post: post %>
+    <% end %>
+  </div>
+  <div class="text-center mt-4">
+    <button type="button" class="bg-stone-600 text-sm text-white font-bold p-2">See all posts</button>
+  </div>
+</section>
