@@ -1,7 +1,8 @@
 <div class="relative bg-white drop-shadow-md p-4 mb-2">
   <h3 class="mb-2 text-sm font-bold"><%= post.title %> #<%= post.id %></h3>
+  <% text_body = post.text.split(".").first(4).join(".") %>
   <h4>
-    <%= post.text %>
+    <%= text_body %>.
   </h4>
   <p class="absolute right-4 bottom-2 text-xs text-stone-600 font-bold">Comments: <%= post.comments_count %>, Likes: <%= post.likes_count %></p>
 </div>
