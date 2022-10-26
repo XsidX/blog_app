@@ -4,5 +4,8 @@
   <h4>
     <%= text_body %>.
   </h4>
-  <p class="absolute right-4 bottom-2 text-xs text-stone-600 font-bold">Comments: <%= post.comments_count %>, Likes: <%= post.likes_count %></p>
+  <div class="absolute top-4 right-4 text-xs bg-white rounded-md overflow-hidden drop-shadow-sm">
+    <button type="button" class="p-2 hover:text-stone-500"><%= link_to 'Edit', edit_user_post_path(@user, post) %></button>|<button type="button" class="p-2 hover:text-stone-600"><%= link_to 'Delete', user_post_path(@user, post), data: { turbo_method: :delete, turbo_confirm: 'Are you sure'} %></button>
+  </div>
+  <p class="absolute right-4 bottom-2 text-xs text-gray-900 font-light">Comments: <%= post.comments_count %>, Likes: <%= post.likes_count %></p>
 </div>
