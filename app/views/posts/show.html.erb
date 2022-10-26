@@ -1,10 +1,10 @@
 <section>
   <div class="relative p-4 drop-shadow-md bg-stone-600 text-white">
     <h3><%= @post.title %> <span class="pr-1">#<%= @post.id %>,</span>  by <%= @user.name %></h3>
-    <h4 class="absolute right-4 top-4 text-xs font-bold">Comments: <%= @post.comments_count %>, Likes: <%= @post.likes_count %></h4>
+    <h4 class="absolute right-4 top-4 text-xs font-light">Comments: <%= @post.comments_count %>, Likes: <%= @post.likes_count %></h4>
     <p class="mt-4"><%= @post.text.split(".").first(4).join(".") %>.</p>
     <br>
-    <p><%= @post.text.split(".")[3..50].join(".") %>.</p>
+    <p><%= @post.text.split(".")[3..50]&.join(".") %></p>
   </div>
   <%= render 'layouts/comments_card', post: @post %>
 </section>
