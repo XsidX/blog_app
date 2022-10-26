@@ -6,13 +6,9 @@ class UsersController < ApplicationController
 
   def show; end
 
-  def new
+  def new; end
 
-  end
-
-  def create
-
-  end
+  def create; end
 
   private
 
