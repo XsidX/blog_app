@@ -1,11 +1,14 @@
 <div class="relative bg-white drop-shadow-md p-4 mb-2">
   <h3 class="mb-2 text-sm font-bold"><%= post.title %> #<%= post.id %></h3>
-  <% text_body = post.text.split(".").first(4).join(".") %>
-  <h4>
-    <%= text_body %>.
+  <% text_body = post.text.split(".").first(2).join(".") %>
+  <h4 class="px-2 mb-2">
+    <%= text_body %>...
   </h4>
-  <div class="absolute top-4 right-4 text-xs bg-white rounded-md overflow-hidden drop-shadow-sm">
+
+  <div class="absolute top-0 right-0 text-xs bg-white rounded-md overflow-hidden drop-shadow-sm">
     <button type="button" class="p-2 hover:text-stone-500"><%= link_to 'Edit', edit_user_post_path(@user, post) %></button>|<button type="button" class="p-2 hover:text-stone-600"><%= link_to 'Delete', user_post_path(@user, post), data: { turbo_method: :delete, turbo_confirm: 'Are you sure'} %></button>
   </div>
   <p class="absolute right-4 bottom-2 text-xs text-gray-900 font-light">Comments: <%= post.comments_count %>, Likes: <%= post.likes_count %></p>
+
+  <button type="button" class="p-2 hover:text-stone-700 text-stone-400 text-xs font-bold rounded-md drop-shadow-sm"><%= link_to 'Continue reading', user_post_path(@user, post) %></button>
 </div>
