@@ -1,13 +1,11 @@
 <nav class="relative bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900" data-controller="header">
   <div class="container flex flex-wrap justify-between items-center mx-auto">
-    <a href="https://flowbite.com/" class="flex items-center">
-      <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+    <a href="https://github.com/XsidX/blog_app" target="_blank" class="flex items-center">
       <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">BlogApp</span>
     </a>
     <div class="flex items-center md:order-2">
       <button data-header-target="openMyMenu" type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-        <span class="sr-only">Open user menu</span>
-        <img class="w-8 h-8 rounded-full" alt="user photo" src=<%= user.photo %>>
+        <img class="w-8 h-8 rounded-full" alt="user photo" src=<%= current_user.photo %>>
       </button>
       <!-- Dropdown menu -->
       <div class="hidden absolute top-12 right-0 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
@@ -20,33 +18,36 @@
            data-transition-leave-end="transform opacity-0 scale-95"
       >
         <div class="py-3 px-4">
-          <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-          <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+          <span class="block text-sm text-gray-900 dark:text-white"><%= current_user.name %></span>
+          <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400"><%= current_user.name.downcase %>@blogapp.com</span>
         </div>
         <ul class="py-1" aria-labelledby="user-menu-button">
           <li>
-            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+            <a href="#" class="opacity-50 block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
+          </li>
+          <li class="py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+            <a href="#" class="block" ><%= link_to 'Create a post', new_user_post_path(current_user) %></a>
+          </li>
+          <li class="py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+            <a href="#" class="block"><%= link_to 'My posts', user_posts_path(current_user) %></a>
           </li>
           <li>
-            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+            <a href="#" class="opacity-50 block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
           </li>
           <li>
-            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
-          </li>
-          <li>
-            <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+            <a href="#" class="opacity-50 block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
           </li>
         </ul>
       </div>
     </div>
     <div class="justify-between items-center w-full md:flex md:w-auto md:order-1">
       <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li class="text-stone-600 hover:text-stone-400">
+        <li class="text-stone-700 hover:text-stone-400">
           <a><%= link_to 'Home', root_path %></a>
         </li>
-        <li data-header-target="openUserDropdown">
+        <li data-header-target="openUserDropdown" class="text-stone-700 hover:text-stone-400">
           <button
-            class="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
+            class="flex justify-between items-center">
             Users
             <svg class="ml-1 w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
           </button>
@@ -62,14 +63,56 @@
             data-transition-leave-end="transform opacity-0 scale-95"
           >
             <ul class="py-1 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownNavbarButton">
-              <li>
-                <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View authors</a>
+              <li class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                <a><%= link_to 'View authors', users_path %></a>
               </li>
               <li>
-                <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Become an author</a>
+                <a class="opacity-50 block py-2 px-4 dark:hover:bg-gray-600 dark:hover:text-white">Become an author</a>
               </li>
             </ul>
           </div>
+        </li>
+        <li data-header-target="openPostDropdown" class="text-stone-700 hover:text-stone-400">
+          <button
+            class="flex justify-between items-center">
+            Posts
+            <svg class="ml-1 w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+          </button>
+          <!-- Dropdown menu -->
+          <div
+            class="hidden absolute top-12 z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+            id="post-dropdown-menu"
+            data-transition-enter="transition ease-out duration-100"
+            data-transition-enter-start="transform opacity-0 scale-95"
+            data-transition-enter-end="transform opacity-100 scale-100"
+            data-transition-leave="transition ease-in duration-75"
+            data-transition-leave-start="transform opacity-100 scale-100"
+            data-transition-leave-end="transform opacity-0 scale-95"
+          >
+            <ul class="py-1 text-sm text-gray-700 dark:text-gray-400">
+              <% @users&.each do |user| %>
+              <li class="flex gap-2 items-center py-2 px-4 cursor-pointer group">
+                  <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                    <%= link_to user_posts_path(user) do %>
+                      <%= image_tag "#{user.photo}", class: "w-6 h-6 rounded-full"%>
+                    <% end %>
+                  </button>
+                  <p class="text-stone-700 group-hover:text-stone-400"><%=link_to user.name, user_posts_path(user) %></p>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+        <li class="text-stone-700 hover:text-stone-400">
+          <a><%= link_to 'Create a post', new_user_post_path(current_user) %></a>
+        </li>
+        <li class="text-stone-700 group">
+          <a class="flex items-center justify-center gap-1 group-hover:text-stone-400" href="https://github.com/XsidX/blog_app" target="_blank" class="">
+            Source
+            <svg class="group-hover:fill-current" height="14" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="14" data-view-component="true">
+              <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+          </a>
         </li>
       </ul>
     </div>
