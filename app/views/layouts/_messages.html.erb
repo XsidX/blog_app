@@ -1,6 +1,6 @@
 <% flash.each do |type, msg| %>
   <ul>
-    <% if msg.include?('You can only edit your own posts') %>
+    <% if msg.include?('own') %>
       <li class="text-red-500 text-sm mb-4"><%= msg %> ❌</li>
     <% else %>
       <li class="text-green-500 text-sm mb-4"><%= msg %> ✅</li>
