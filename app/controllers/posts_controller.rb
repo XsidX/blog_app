@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :set_user, only: %i[index show]
   before_action :set_current_user, only: %i[new create edit update destroy]
+  before_action :set_users, only: %i[index show new edit]
   def index
     @posts = @user.posts
   end
@@ -56,6 +57,10 @@ class PostsController < ApplicationController
 
   def set_user
     @user = User.find(params[:user_id])
+  end
+
+  def set_users
+    @users = User.all
   end
 
   def set_current_user
