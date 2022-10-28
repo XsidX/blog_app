@@ -23,29 +23,29 @@
         </div>
         <ul class="py-1" aria-labelledby="user-menu-button">
           <li>
-            <a href="#" class="opacity-50 block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
+            <a href="#" class="opacity-50 block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white transition ease-in duration-100">Profile</a>
           </li>
-          <li class="py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+          <li class="py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white transition ease-in duration-100">
             <a href="#" class="block" ><%= link_to 'Create a post', new_user_post_path(current_user) %></a>
           </li>
-          <li class="py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+          <li class="py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white transition ease-in duration-100">
             <a href="#" class="block"><%= link_to 'My posts', user_posts_path(current_user) %></a>
           </li>
           <li>
-            <a href="#" class="opacity-50 block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+            <a href="#" class="opacity-50 block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white transition ease-in duration-100">Settings</a>
           </li>
           <li>
-            <a href="#" class="opacity-50 block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+            <a href="#" class="opacity-50 block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white transition ease-in duration-100">Sign out</a>
           </li>
         </ul>
       </div>
     </div>
     <div class="justify-between items-center w-full md:flex md:w-auto md:order-1">
       <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li class="text-stone-700 hover:text-stone-400">
+        <li class="text-stone-700 hover:text-stone-400 transition ease-in duration-100">
           <a><%= link_to 'Home', root_path %></a>
         </li>
-        <li data-header-target="openUserDropdown" class="text-stone-700 hover:text-stone-400">
+        <li data-header-target="openUserDropdown" class="text-stone-700 hover:text-stone-400 transition ease-in duration-100">
           <button
             class="flex justify-between items-center">
             Users
@@ -63,16 +63,16 @@
             data-transition-leave-end="transform opacity-0 scale-95"
           >
             <ul class="py-1 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownNavbarButton">
-              <li class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+              <li class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white transition ease-in duration-100">
                 <a><%= link_to 'View authors', users_path %></a>
               </li>
               <li>
-                <a class="opacity-50 block py-2 px-4 dark:hover:bg-gray-600 dark:hover:text-white">Become an author</a>
+                <a class="opacity-50 block py-2 px-4 dark:hover:bg-gray-600 dark:hover:text-white transition ease-in duration-100">Become an author</a>
               </li>
             </ul>
           </div>
         </li>
-        <li data-header-target="openPostDropdown" class="text-stone-700 hover:text-stone-400">
+        <li data-header-target="openPostDropdown" class="text-stone-700 hover:text-stone-400 transition ease-in duration-100">
           <button
             class="flex justify-between items-center">
             Posts
@@ -103,11 +103,11 @@
             </ul>
           </div>
         </li>
-        <li class="text-stone-700 hover:text-stone-400">
+        <li class="text-stone-700 hover:text-stone-400 transition ease-in duration-100">
           <a><%= link_to 'Create a post', new_user_post_path(current_user) %></a>
         </li>
         <li class="text-stone-700 group">
-          <a class="flex items-center justify-center gap-1 group-hover:text-stone-400" href="https://github.com/XsidX/blog_app" target="_blank" class="">
+          <a class="flex items-center justify-center gap-1 group-hover:text-stone-400 transition ease-in duration-100" href="https://github.com/XsidX/blog_app" target="_blank" class="">
             Source
             <svg class="group-hover:fill-current" height="14" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="14" data-view-component="true">
               <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>

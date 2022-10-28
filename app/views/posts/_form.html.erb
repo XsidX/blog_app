@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<%= form_with model: [@user, @post] do |form| %>
+<%= form_with model: [@current_user, @post] do |form| %>
   <ul class="flex flex-col gap-4">
     <li class="flex flex-col">
       <%= form.label :title %>
