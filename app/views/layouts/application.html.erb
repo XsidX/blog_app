@@ -12,7 +12,8 @@
   </head>
 
   <body>
-    <main class="p-4 md:px-48">
+    <%= render 'layouts/navigation', current_user: ApplicationController.new.current_user %>
+    <main class="main p-4 md:px-48">
       <%= yield %>
     </main>
   </body>

@@ -1,0 +1,25 @@
+<% if @post.errors.any? %>
+  <div class="mb-4">
+    <h2 class="text-xs text-red-400 mb-1"><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+    <ul class="px-4">
+    <% @post.errors.full_messages.each do |msg| %>
+      <li class="text-xs text-red-400 text-decoration list-disc"><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: [@current_user, @post] do |form| %>
+  <ul class="flex flex-col gap-4">
+    <li class="flex flex-col">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </li>
+    <li class="flex flex-col">
+      <%= form.label :text %>
+      <%= form.text_area :text %>
+    </li>
+  </ul>
+  <button type="button" class="mt-4 py-2 px-4 text-sm font-medium text-white bg-stone-600 rounded-r border-0 border-l border-gray-700 hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"><%= form.submit %></button>
+<% end %>

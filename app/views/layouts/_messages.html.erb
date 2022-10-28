@@ -1,0 +1,11 @@
+<% flash.each do |type, msg| %>
+  <ul>
+    <% if msg.include?('own') %>
+      <li class="text-red-500 text-sm mb-4"><%= msg %> ❌</li>
+    <% else %>
+      <li class="text-green-500 text-sm mb-4"><%= msg %> ✅</li>
+    <% end %>
+  </ul>
+<% end %>
+
+

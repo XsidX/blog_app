@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   root "users#index"
   # Define route for users in association with posts
   resources :users, only: [:index, :show] do
-    resources :posts, only: [:index, :show]
+    resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+      resources :comments, only: [:create]
+      resources :likes, only: [:create]
+    end
   end
 end
