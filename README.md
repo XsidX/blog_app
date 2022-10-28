@@ -6,6 +6,10 @@
 
 - Ruby on Rails
 
+## Live demo
+
+[Live link](https://blog-app-v1-sid.herokuapp.com/)
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
