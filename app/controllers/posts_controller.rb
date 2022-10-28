@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :set_user, only: %i[index show]
-  before_action :set_current_user, only: %i[new create edit update destroy]
+  before_action :set_current_user, only: %i[index new edit destroy]
   before_action :set_users, only: %i[index show new edit]
   def index
     @posts = @user.posts
@@ -14,10 +14,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = @user.posts.new(post_params)
+    @post = current_user.posts.new(post_params)
     if @post.save
       flash[:notice] = 'Your post was created successfully'
-      redirect_to user_posts_path(@user)
+      redirect_to user_posts_path(current_user)
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
     if @post.author == current_user
       if @post.update(post_params)
         flash[:notice] = 'Your post was updated successfully'
-        redirect_to user_posts_path(@user)
+        redirect_to user_posts_path(current_user)
       else
         render :edit, status: :unprocessable_entity
       end
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
     else
       flash[:notice] = 'You can only delete your own posts'
     end
-    redirect_to user_posts_path(@user)
+    redirect_to user_posts_path(current_user)
   end
 
   private
@@ -64,7 +64,7 @@ class PostsController < ApplicationController
   end
 
   def set_current_user
-    @user = current_user
+    @current_user = current_user
   end
 
   def post_params
