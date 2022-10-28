@@ -22,6 +22,3 @@ class LikesController < ApplicationController
     @current_user = current_user
   end
 end
-
-
-
