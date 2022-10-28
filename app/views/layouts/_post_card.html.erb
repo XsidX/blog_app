@@ -1,0 +1,64 @@
+<div class="post-card relative bg-white drop-shadow-md p-4 mb-2" data-controller="modals">
+  <h3 class="mb-2 text-sm font-bold"><%= post.title %> #<%= post.id %></h3>
+  <% text_body = post.text.split(".").first(2).join(".") %>
+  <h4 class="px-2 mb-2">
+    <%= text_body %>...
+    <button type="button" class="z-20 relative text-sm p-1 bg-white drop-shadow-sm hover:drop-shadow-lg text-stone-600 hover:text-gray-900 transition ease-in duration-100"><%= link_to 'Continue reading', user_post_path(@user, post) %></button>
+  </h4>
+
+
+
+  <div class="z-20 absolute top-0 right-0 text-xs bg-white rounded-md overflow-hidden drop-shadow-sm">
+    <button type="button" class="p-2 hover:text-stone-500 transition ease-in duration-100"><%= link_to 'Edit', edit_user_post_path(@current_user, post) %></button>
+    |
+    <button type="button" class="p-2 hover:text-stone-600 transition ease-in duration-100"><%= link_to 'Delete', user_post_path(@current_user, post), data: { turbo_method: :delete, turbo_confirm: 'Are you sure'} %></button>
+  </div>
+  <div class="flex gap-4 mt-4">
+  <div class="z-20 relative mb-4">
+    <div class="flex text-sm gap-3 pl-2">
+      <%= form_with url: "/users/#{post.author_id}/posts/#{post.id}/likes" do |form| %>
+        <button type="submit" class="flex items-center gap-1 text-blue-600 font-bold group">
+          <%= image_tag "https://www.facebook.com/reaction/image/1635855486666999/?size=20&scale=1", class: "group-hover:scale-125 transition ease-in duration-100", style: "height: 18px; width: 18px;" %>
+          <%= form.submit "#{post.likes_count}", class: "text-blue-600 font-bold" %>
+        </button>
+      <% end %>
+      <button data-modals-target="openCommentInput" data-index="<%= post.id %>" type="button" class="comment-btn flex items-center gap-1 text-stone-600 font-semibold group">
+        <i data-visualcompletion="css-img" class="group-hover:scale-110 transition ease-in duration-100" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yK/r/H6IBF1RX3vl.png&quot;); background-position: 0px -213px; background-size: auto; width: 18px; height: 18px; background-repeat: no-repeat; display: inline-block;"></i>
+        Comment
+      </button>
+    </div>
+
+      <!-- Comment dropdown input -->
+    <div
+      class="hidden z-30 mt-2 mb-4 bg-white text-sm rounded border border-gray-100 drop-shadow-md"
+      id="comment-input-<%= post.id %>"
+      data-transition-enter="transition ease-out duration-100"
+      data-transition-enter-start="transform opacity-0 scale-95"
+      data-transition-enter-end="transform opacity-100 scale-100"
+      data-transition-leave="transition ease-in duration-75"
+      data-transition-leave-start="transform opacity-100 scale-100"
+      data-transition-leave-end="transform opacity-0 scale-95"
+    >
+      <div>
+        <%= form_with model: comment, url: user_post_comments_path(post.author, post) do |form| %>
+          <div class="relative w-96 h-32 focus:outline-none">
+            <%= form.text_area :text, class: "w-full h-full border-none focus:ring-white text-sm text-stone-600 font-semibold italic", placeholder: "Add a comment..." %>
+            <button
+              type="submit"
+              class="text-sm text-white bg-stone-500 hover:bg-stone-600 drop-shadow-lg py-1 px-2 cursor-pointer transition ease-in duration-100"
+              id="comment-submit-<%= post.id %>"
+            >
+              Comment
+            </button>
+          </div>
+        <% end %>
+
+      </div>
+
+    </div>
+  </div>
+  </div>
+  <%= render 'layouts/comments_card', post: post %>
+  <div data-modals-target="leaveCommentInput" data-index="<%= post.id %>" class="absolute inset-0 z-10"></div>
+</div>
+

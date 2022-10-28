@@ -1,0 +1,11 @@
+<section>
+  <div class="relative p-4 drop-shadow-md bg-stone-600 text-white">
+    <h3 class="font-bold"><%= @post.title %> <span class="pr-1">#<%= @post.id %>,</span>  by <%= @user.name %></h3>
+    <h4 class="absolute right-4 top-4 text-xs font-light">Comments: <%= @post.comments_count %>, Likes: <%= @post.likes_count %></h4>
+    <p class="mt-4"><%= @post.text.split(".").first(2).join(".") %>.</p>
+    <br>
+    <p class="mb-2"><%= @post.text.split(".")[2..50]&.join(".") %></p>
+    <button type="button" class="p-2 hover:text-white text-stone-300 text-xs rounded-md bg-stone-600 drop-shadow-lg font-bold"><%= link_to 'Back', user_posts_path(@user) %></button>
+  </div>
+  <%= render 'layouts/comments_card', post: @post %>
+</section>
