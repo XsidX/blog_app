@@ -2,9 +2,9 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :set_user, only: %i[index show]
   before_action :set_current_user, only: %i[index new edit destroy]
-  before_action :set_users, only: %i[index show new edit]
+  before_action :set_users, only: %i[show index new edit]
   def index
-    @posts = @user.posts
+    @pagy, @posts = pagy(@user.posts.order(created_at: :desc), items: 2)
   end
 
   def show; end
