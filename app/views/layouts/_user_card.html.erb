@@ -1,6 +1,8 @@
 <div class="grid grid-cols-6 mb-4">
   <div class="col-span-1">
-    <img src=<%= user.photo %> class="object-cover">
+    <%= link_to user_path(user) do %>
+      <img src=<%= user.photo %> class="object-cover">
+    <% end %>
   </div>
   <div class="relative col-span-5 bg-stone-600 px-4 flex flex-col justify-center">
     <h2 class="text-white md:text-lg"><%= user.name %> #<%= user.id %></h2>
