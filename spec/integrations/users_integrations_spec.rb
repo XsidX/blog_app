@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Users', type: :system do
   describe '#users index' do
     before(:example) do
-      user1 = User.create(id: 1, name: 'Brad', photo: 'https://randomuser.me/api/portraits/men/65.jpg', bio: 'I am user 1')
+      user1 = User.create(id: 1, name: 'Brad', photo: 'https://randomuser.me/api/portraits/men/65.jpg',
+                          bio: 'I am user 1')
       User.create(id: 2, name: 'Sid', photo: 'https://randomuser.me/api/portraits/women/44.jpg', bio: 'I am user 2')
       Post.create(author: user1, title: 'Post 1', text: 'Text 1')
       Post.create(author: user1, title: 'Post 1', text: 'Text 1')
@@ -30,10 +31,11 @@ RSpec.describe 'Users', type: :system do
       expect(page).to have_current_path(user_path(1))
     end
   end
-  
+
   describe '#user show' do
     before(:example) do
-      @user1 = User.create(id: 1, name: 'Brad', photo: 'https://randomuser.me/api/portraits/men/65.jpg', bio: 'I am user 1')
+      @user1 = User.create(id: 1, name: 'Brad', photo: 'https://randomuser.me/api/portraits/men/65.jpg',
+                           bio: 'I am user 1')
       @post1 = Post.create(id: 1, author: @user1, title: 'Post 1', text: 'Text 1', created_at: Time.now - 1.day)
       @post2 = Post.create(id: 2, author: @user1, title: 'Post 2', text: 'Text 2', created_at: Time.now - 2.days)
       @post3 = Post.create(id: 3, author: @user1, title: 'Post 3', text: 'Text 3', created_at: Time.now - 3.days)
@@ -69,7 +71,7 @@ RSpec.describe 'Users', type: :system do
       expect(page).to have_link('See all posts')
     end
 
-    it "redirects to the users posts index page when see all posts is clicked" do
+    it 'redirects to the users posts index page when see all posts is clicked' do
       click_link('See all posts')
       expect(page).to have_current_path(user_posts_path(1))
     end
@@ -77,7 +79,8 @@ RSpec.describe 'Users', type: :system do
 
   context '#user show click' do
     before(:example) do
-      @user1 = User.create(id: 1, name: 'Brad', photo: 'https://randomuser.me/api/portraits/men/65.jpg', bio: 'I am user 1')
+      @user1 = User.create(id: 1, name: 'Brad', photo: 'https://randomuser.me/api/portraits/men/65.jpg',
+                           bio: 'I am user 1')
       @post1 = Post.create(id: 1, author: @user1, title: 'Post 1', text: 'Text 1', created_at: Time.now - 1.day)
       visit user_path(1)
     end
@@ -86,6 +89,5 @@ RSpec.describe 'Users', type: :system do
       click_link('Continue reading')
       expect(page).to have_current_path(user_post_path(1, 1))
     end
-  end  
-
+  end
 end
