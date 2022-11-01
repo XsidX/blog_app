@@ -1,7 +1,7 @@
 <div class="grid grid-cols-6 mb-4">
   <div class="col-span-1">
     <%= link_to user_path(user) do %>
-      <img src=<%= user.photo %> class="object-cover">
+      <img src=<%= user.photo %> class="object-cover" alt="<%= user.name %> profile">
     <% end %>
   </div>
   <div class="relative col-span-5 bg-stone-600 px-4 flex flex-col justify-center">

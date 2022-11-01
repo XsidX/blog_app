@@ -7,7 +7,7 @@
     </h4>
   </div>
   <div>
-    <% @user.posts.each do |post| %>
+    <% @user.recent_posts.includes(:author).each do |post| %>
       <%= render 'layouts/post_card', post: post, comment: CommentsController.new.new%>
     <% end %>
   </div>
