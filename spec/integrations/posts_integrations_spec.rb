@@ -3,14 +3,17 @@ require 'rails_helper'
 RSpec.describe 'Posts', type: :system do
   describe '#posts index' do
     before(:example) do
-      @user1 = User.create(id: 1, name: 'Brad', photo: 'https://randomuser.me/api/portraits/men/65.jpg', bio: 'I am user 1')
-      @post1 = Post.create(id: 1, author: @user1, title: 'Post 1', text: 'Line one. Line two. Line three, Line four. Line five', created_at: Time.now - 1.day)
+      @user1 = User.create(id: 1, name: 'Brad', photo: 'https://randomuser.me/api/portraits/men/65.jpg',
+                           bio: 'I am user 1')
+      @post1 = Post.create(id: 1, author: @user1, title: 'Post 1',
+                           text: 'Line one. Line two. Line three, Line four. Line five', created_at: Time.now - 1.day)
       Post.create(id: 2, author: @user1, title: 'Post 2', text: 'text 2', created_at: Time.now - 1.day)
       Post.create(id: 3, author: @user1, title: 'Post 3', text: 'text 3', created_at: Time.now - 2.day)
       Post.create(id: 4, author: @user1, title: 'Post 4', text: 'text 4', created_at: Time.now - 3.day)
 
       6.times do |i|
-        Comment.create(id: i + 1, author: @user1, post: @post1, text: "Comment #{i + 1}", created_at: Time.now - (i + 1).day)
+        Comment.create(id: i + 1, author: @user1, post: @post1, text: "Comment #{i + 1}",
+                       created_at: Time.now - (i + 1).day)
       end
 
       2.times do |i|
@@ -70,7 +73,8 @@ RSpec.describe 'Posts', type: :system do
 
   context '#posts index click' do
     before(:example) do
-      @user1 = User.create(id: 1, name: 'Brad', photo: 'https://randomuser.me/api/portraits/men/65.jpg', bio: 'I am user 1')
+      @user1 = User.create(id: 1, name: 'Brad', photo: 'https://randomuser.me/api/portraits/men/65.jpg',
+                           bio: 'I am user 1')
       @post1 = Post.create(id: 1, author: @user1, title: 'Post 1', text: 'Text 1', created_at: Time.now - 1.day)
       visit user_path(1)
     end
@@ -83,7 +87,8 @@ RSpec.describe 'Posts', type: :system do
 
   describe '#posts show' do
     before(:example) do
-      @user1 = User.create(id: 1, name: 'Brad', photo: 'https://randomuser.me/api/portraits/men/65.jpg', bio: 'I am user 1')
+      @user1 = User.create(id: 1, name: 'Brad', photo: 'https://randomuser.me/api/portraits/men/65.jpg',
+                           bio: 'I am user 1')
       @post1 = Post.create(id: 1, author: @user1, title: 'Post 1', text: 'Hello world')
       6.times do |i|
         Comment.create(id: i + 1, author: @user1, post: @post1, text: 'Comment 1')
@@ -121,4 +126,3 @@ RSpec.describe 'Posts', type: :system do
     end
   end
 end
-
