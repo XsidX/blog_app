@@ -12,7 +12,9 @@
   </head>
 
   <body>
-    <%= render 'layouts/navigation', current_user: ApplicationController.new.current_user %>
+    <%= render 'layouts/navigation' %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <main class="main p-4 md:px-48">
       <%= yield %>
     </main>
