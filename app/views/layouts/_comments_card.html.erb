@@ -1,7 +1,16 @@
 <div class="px-1 -z-10">
-  <h3 class="py-2 text-stone-600 text-xs font-bold">View <%= post.comments_count %> previous comments</h3>
-  <% post.recent_comments.each do |comment| %>
-    <% author_name =  User.all.find(comment.author_id).name %>
-    <p class="text-xs pb-1 italic"><%= author_name %>: <%= comment.text %></p>
-  <% end %>
+<h3 class="py-2 text-stone-600 text-xs font-bold">View <%= post.comments_count %> previous comments</h3>
+<% post.recent_comments.includes(:post, :author).each do |comment| %>
+<div class="flex items-center gap-3">
+<p class="text-xs pb-1 italic"><%= comment.author.name %>: <%= comment.text %></p>
+<% if can? :manage, comment %>
+<div class="cursor-pointer z-20">
+<%= link_to user_post_comment_path(comment.post.author, comment.post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure'} do |form| %>
+<button type="button">
+<i data-visualcompletion="css-img" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yJ/r/0uZ6-PjaiHq.png&quot;); background-position: 0px -1007px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+</button>
+<% end %>
 </div>
+<% end %>
+</div>
+<% end %>
