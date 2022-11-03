@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :posts_count, numericality: { only_integer: true }, comparison: { greater_than_or_equal_to: 0 }
 
+  ROLES = %w[user admin].freeze
   def recent_posts
     posts.order(created_at: :desc).limit(3)
   end
