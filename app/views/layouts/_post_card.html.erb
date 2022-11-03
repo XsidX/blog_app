@@ -9,10 +9,11 @@
 
 
   <div class="z-20 absolute top-0 right-0 text-xs bg-white rounded-md overflow-hidden drop-shadow-sm">
-    <button type="button" class="p-2 hover:text-stone-500 transition ease-in duration-100"><%= link_to 'Edit', edit_user_post_path(current_user, post) %></button>
-    |
-    <button type="button" class="p-2 hover:text-stone-600 transition ease-in duration-100"><%= link_to 'Delete', user_post_path(current_user, post), data: { turbo_method: :delete, turbo_confirm: 'Are you sure'} %></button>
-  </div>
+  <% if can? :manage, post %>
+<button type="button" class="p-2 hover:text-stone-500 transition ease-in duration-100"><%= link_to 'Edit', edit_user_post_path(@user, post) %></button>
+|
+<button type="button" class="p-2 hover:text-stone-600 transition ease-in duration-100"><%= link_to 'Delete', user_post_path(@user, post), data: { turbo_method: :delete, turbo_confirm: 'Are you sure'} %></button>
+<% end %>   </div>
   <div class="flex gap-4 mt-4">
   <div class="z-20 relative mb-4">
     <div class="flex text-sm gap-3 pl-2">
