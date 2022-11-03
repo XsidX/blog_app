@@ -1,20 +1,20 @@
 class Ability
 include CanCan::Ability
 
-def initialize(user)
-user ||= User.new # guest user (not logged in)
+  def initialize(user)
+  user ||= User.new # guest user (not logged in)
 
-case user.role
-when 'admin'
-can :manage, :all
-when 'user'
-can :read, :all
-can :manage, Post, author_id: user.id
-can :manage, Comment, author_id: user.id
-can :manage, Like, author_id: user.id
-else
-can :read, Post
-end
+  case user.role
+  when 'admin'
+  can :manage, :all
+  when 'user'
+    can :read, :all
+    can :manage, Post, author_id: user.id
+    can :manage, Comment, author_id: user.id
+    can :manage, Like, author_id: user.id
+  else
+  can :read, Post
+  end
 
 # The first argument to `can` is the action you are giving the user
 # permission to do.
@@ -29,4 +29,6 @@ end
 # objects.
 # For example, here the user can only update published articles.
 #
-# can :update, Article, published: 
+# can :update, Article, published:
+  end
+end
