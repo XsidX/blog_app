@@ -26,8 +26,8 @@ To get a local copy up and running follow these simple example steps.
 - Navigate to the folder using `cd blog_app`
 - Use the following commands to
     - install necessary gems `bundle install`
-    - install necessary javascript packages `npm install`
-    - run the development server `rails s`
+    - run `rails assets:precompile`
+    - run the development server `./bin/dev`
 
 ## Author
 
