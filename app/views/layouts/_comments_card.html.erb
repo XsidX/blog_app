@@ -1,7 +1,7 @@
 <div class="px-1 -z-10">
   <h3 class="py-2 text-stone-600 text-xs font-bold">View <%= post.comments_count %> previous comments</h3>
-  <% post.comments.each do |comment| %>
+  <% post.recent_comments.each do |comment| %>
     <% author_name =  User.all.find(comment.author_id).name %>
-    <p class="text-sm pb-1 italic"><%= author_name %>: <%= comment.text %></p>
+    <p class="text-xs pb-1 italic"><%= author_name %>: <%= comment.text %></p>
   <% end %>
 </div>

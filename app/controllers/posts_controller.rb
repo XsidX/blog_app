@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   before_action :set_current_user, only: %i[index new edit destroy]
   before_action :set_users, only: %i[show index new edit]
   def index
-    @pagy, @posts = pagy(@user.posts.order(created_at: :desc), items: 2)
+    @pagy, @posts = pagy(@user.posts.order(created_at: :desc).includes(:author), items: 2)
+    @posts = @posts.includes(:author)
   end
 
   def show; end
