@@ -19,5 +19,4 @@ class Api::V1::PostsController < ApiController
   def set_post
     @post = Post.find(params[:post_id])
   end
-
 end
