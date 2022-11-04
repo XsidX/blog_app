@@ -11,4 +11,15 @@ Rails.application.routes.draw do
       resources :likes, only: [:create]
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      post :auth, to: "authentication#create"
+      resources :users, only: [:index] do
+        resources :posts, only: [:index] do
+          resources :comments, only: [:index, :create]
+        end
+      end
+    end
+  end
 end
