@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :set_user, only: %i[index show]
-  before_action :set_current_user, only: %i[index new edit destroy]
+  before_action :set_user, only: %i[show index new create destroy edit update]
   before_action :set_users, only: %i[show index new edit]
+
   def index
     @pagy, @posts = pagy(@user.posts.order(created_at: :desc).includes(:author), items: 2)
     @posts = @posts.includes(:author)
@@ -15,39 +16,52 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.new(post_params)
-    if @post.save
-      flash[:notice] = 'Your post was created successfully'
-      redirect_to user_posts_path(current_user)
+    if can? :create, Post
+      @post = @user.posts.new(post_params)
+      @post.author = current_user
+      if @post.save
+        flash[:notice] = 'Post was created successfully'
+        redirect_to user_posts_path(@post.author)
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render :new, status: :unprocessable_entity
+      flash[:alert] = 'You must be logged in to create a post'
+      redirect_to user_session_path
     end
   end
 
-  def edit; end
+  def edit
+    if can? :edit, Post
+      render :edit
+    else
+      flash[:alert] = 'You are not authorized to edit this post'
+      redirect_to user_posts_path(@user)
+    end
+  end
 
   def update
-    if @post.author == current_user
+    if can? :update, Post
       if @post.update(post_params)
-        flash[:notice] = 'Your post was updated successfully'
-        redirect_to user_posts_path(current_user)
+        flash[:notice] = 'Post was updated successfully'
+        redirect_to user_posts_path(@post.author)
       else
         render :edit, status: :unprocessable_entity
       end
     else
-      flash[:notice] = 'You can only edit your own posts'
+      flash[:notice] = 'You are not authorized to edit this post'
       redirect_to user_posts_path(@user)
     end
   end
 
   def destroy
-    if @post.author == current_user
+    if can? :destroy, Post
       @post.destroy
-      flash[:notice] = 'Your post was deleted successfully'
+      flash[:notice] = 'Post was deleted successfully'
     else
-      flash[:notice] = 'You can only delete your own posts'
+      flash[:notice] = 'You are not authorized to delete this post'
     end
-    redirect_to user_posts_path(current_user)
+    redirect_to user_posts_path(@user)
   end
 
   private
