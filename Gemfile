@@ -3,9 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
+gem 'active_model_serializers', '~> 0.10.12'
+
 gem 'cancancan'
 
 gem 'devise'
+
+gem 'jwt'
 
 gem 'mailcatcher'
 
