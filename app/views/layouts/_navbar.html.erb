@@ -105,7 +105,7 @@
               <li class="flex gap-2 items-center py-2 px-4 cursor-pointer group">
                   <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                     <%= link_to user_posts_path(user) do %>
-                      <%= image_tag "#{user.photo}", class: "w-6 h-6 rounded-full"%>
+                      <%= image_tag "#{user.photo.include?('https') ? user.photo : "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"}", class: "w-6 h-6 rounded-full" %>
                     <% end %>
                   </button>
                   <p class="text-stone-700 group-hover:text-stone-400"><%=link_to user.name, user_posts_path(user) %></p>
