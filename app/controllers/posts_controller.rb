@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_post, only: %i[show edit update destroy]
   before_action :set_user, only: %i[show index new create destroy edit update]
   before_action :set_users, only: %i[show index new edit]
+
   def index
     @pagy, @posts = pagy(@user.posts.order(created_at: :desc).includes(:author), items: 2)
     @posts = @posts.includes(:author)
